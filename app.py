@@ -21,6 +21,11 @@ def index():
 def hello_world():
     return jsonify("hello, world!")
 
+@app.route("/config")
+def get_publishable_key():
+    stripe_config = {"public_key": stripe_keys["publishable_key"]}
+    return jsonify(stripe_config)
+
 
 if __name__ == "__main__":
     app.run()
