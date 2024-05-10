@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "flask-stripe-checkout"
+version = "0.1.0"
+description = "Fla Processing one time payments using stripe in flask application"
+authors = ["AgathaBahati <matinodev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^3.0.3"
+stripe = "^9.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
