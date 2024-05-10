@@ -1,7 +1,7 @@
 import os
 
 import stripe
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -12,6 +12,10 @@ stripe_keys = {
 
 
 stripe.api_key = stripe_keys["secret_key"]
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route("/hello")
 def hello_world():
