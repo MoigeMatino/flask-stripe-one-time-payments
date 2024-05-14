@@ -50,6 +50,13 @@ def create_checkout_session():
     except Exception as e:
         return jsonify(error=str(e)), 403
 
+@app.route("/success")
+def success():
+    return render_template("success.html")
+
+@app.route("/cancelled")
+def cancelled():
+    return render_template("cancelled.html")
 
 if __name__ == "__main__":
     app.run()
