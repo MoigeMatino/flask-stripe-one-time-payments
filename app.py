@@ -41,7 +41,7 @@ def create_checkout_session():
                     "name": "Yellow Mellow",
                     "quantity": 1,
                     "currency": "usd",
-                    "amount": "1.99",
+                    "amount": "199",
                 }
             ]
         )
