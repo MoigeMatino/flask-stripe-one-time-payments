@@ -50,6 +50,9 @@ def create_checkout_session():
     except Exception as e:
         return jsonify(error=str(e)), 403
 
+@app.route("/success")
+def success():
+    return render_template("success.html")
 
 if __name__ == "__main__":
     app.run()
