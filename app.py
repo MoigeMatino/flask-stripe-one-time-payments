@@ -54,5 +54,9 @@ def create_checkout_session():
 def success():
     return render_template("success.html")
 
+@app.route("/cancelled")
+def cancelled():
+    return render_template("cancelled.html")
+
 if __name__ == "__main__":
     app.run()
