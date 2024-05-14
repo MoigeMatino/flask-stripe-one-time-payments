@@ -4,8 +4,9 @@ console.log("Sanity check!");
 fetch("/config")
 .then((result) => { return result.json(); })
 .then((data) => {
+  
   // Initialize Stripe.js
-  const stripe = Stripe(data.publicKey);
+  const stripe = Stripe(data.public_key);
 
   document.querySelector("#submitBtn").addEventListener("click", () => {
     // Get Checkout Session ID

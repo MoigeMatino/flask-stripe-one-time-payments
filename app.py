@@ -38,10 +38,10 @@ def create_checkout_session():
             mode="payment",
             line_items=[
                 {
-                    "name": "T-shirt",
+                    "name": "Yellow Mellow",
                     "quantity": 1,
                     "currency": "usd",
-                    "amount": "2000",
+                    "amount": "1.99",
                 }
             ]
         )
