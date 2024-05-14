@@ -38,11 +38,12 @@ def create_checkout_session():
             mode="payment",
             line_items=[
                 {
-                    "name": "Yellow Mellow",
-                    "quantity": 1,
-                    "currency": "usd",
-                    "amount": "199",
-                }
+                    
+                    "price": "price_1PEzaMRwa8DwDjSVhzZ0LMZS",
+                    "quantity": 1
+                }                      
+                    
+                
             ]
         )
         return jsonify({"sessionId": checkout_session["id"]})
