@@ -95,6 +95,8 @@ This project demonstrates how to integrate Stripe into a Flask application for h
 
 - **Add Subscriptions**: Implement subscription-based payments using Stripe.
 - **Multiple Payment Methods**: Extend the payment options to include more methods supported by Stripe.
+- **Sending Emails**: Send payment confirmation emails to customers.
+- **Update Order Status**: Update the status of orders in the database.
 
 ## Contributing
 
