@@ -8,7 +8,8 @@ app = Flask(__name__)
 stripe_keys = {
     "secret_key": os.environ["STRIPE_SECRET_KEY"],
     "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-}
+    "webhook_secret": os.environ["STRIPE_ENDPOINT_SECRET"]
+    }
 
 
 stripe.api_key = stripe_keys["secret_key"]
