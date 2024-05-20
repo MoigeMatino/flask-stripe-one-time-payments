@@ -2,17 +2,14 @@ import os
 
 import stripe
 from flask import Flask, jsonify, render_template, request
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+load_dotenv()
 
-stripe_keys = {
-    "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-    "webhook_secret": os.environ["STRIPE_ENDPOINT_SECRET"]
-    }
-
-
-stripe.api_key = stripe_keys["secret_key"]
+publishable_key = os.getenv("STRIPE_PUBLISHABLE_KEY")
+secret_key = os.getenv("STRIPE_SECRET_KEY")
+webhook_secret = os.getenv("STRIPE_ENDPOINT_SECRET")
 
 @app.route("/")
 def index():
@@ -24,13 +21,14 @@ def hello_world():
 
 @app.route("/config")
 def get_publishable_key():
-    stripe_config = {"public_key": stripe_keys["publishable_key"]}
+    # publishable_key = os.getenv["STRIPE_PUBLISHABLE_KEY"]
+    stripe_config = {"public_key": publishable_key }
     return jsonify(stripe_config)
 
 @app.route("/create-checkout-session")
 def create_checkout_session():
     domain_url = "http://127.0.0.1:5000/"
-    stripe.api_key = stripe_keys["secret_key"]
+    stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
     try:
         checkout_session = stripe.checkout.Session.create(
             success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
@@ -63,10 +61,10 @@ def cancelled():
 def payment_webhook():
     payload = request.get_data(as_text=True)
     signature_header = request.headers.get("Stripe-Signature")
-
+    
     try:
         event = stripe.Webhook.construct_event(
-            payload, signature_header, stripe_keys["secret_key"]
+            payload, signature_header, secret_key
         )
     except ValueError as e:
         # Invalid payload

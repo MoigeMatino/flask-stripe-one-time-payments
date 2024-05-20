@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 Flask = "^3.0.3"
 stripe = "^9.6.0"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

@@ -1,4 +1,6 @@
 .venv
+.env
+.flaskenv
 /__pycache__/
 .vscode/
 dist/
