@@ -1,6 +1,6 @@
 # Flask Stripe Payments
 
-This repository contains a Flask application that integrates Stripe for handling one-time payments. It provides a straightforward implementation to get you started with integrating Stripe into your Flask projects.
+This repository contains a Flask application that seamlessly integrates Stripe to facilitate one-time payments using the checkout strategy. It offers a clear and concise implementation, providing a robust starting point for integrating Stripe's payment processing capabilities into your Flask projects. Whether you're building a simple e-commerce site or a more complex application, this example will help you quickly set up and customize Stripe payments to suit your needs.
 
 ## Table of Contents
 
