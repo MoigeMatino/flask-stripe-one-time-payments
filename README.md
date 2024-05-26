@@ -77,6 +77,7 @@ This project demonstrates how to integrate Stripe into a Flask application for h
     ```env
     STRIPE_PUBLISHABLE_KEY=your_publishable_key
     STRIPE_SECRET_KEY=your_secret_key
+    STRIPE_ENDPOINT_SECRET=your_webhook_endpoint_secret
     ```
 
 5. **Run the application**:
