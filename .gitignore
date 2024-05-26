@@ -2,3 +2,7 @@
 /__pycache__/
 .vscode/
 dist/
+.dockerignore
+*.pyc
+.env
+.flaskenv
