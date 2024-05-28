@@ -1,36 +1,32 @@
 import os
 
 import stripe
-from flask import Flask, jsonify, render_template, request
+from flask import current_app, jsonify, render_template, request, Blueprint
+# from . import create_app
 
-app = Flask(__name__)
-
-stripe_keys = {
-    "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-    "webhook_secret": os.environ["STRIPE_ENDPOINT_SECRET"]
-    }
+routes_bp = Blueprint("routes_bp", __name__)
 
 
-stripe.api_key = stripe_keys["secret_key"]
 
-@app.route("/")
+@routes_bp.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/hello")
+@routes_bp.route("/hello")
 def hello_world():
     return jsonify("hello, world!")
 
-@app.route("/config")
+@routes_bp.route("/config")
 def get_publishable_key():
-    stripe_config = {"public_key": stripe_keys["publishable_key"]}
+    stripe_publishable_key = current_app.config['STRIPE_PUBLISHABLE_KEY']
+    stripe_config = {"public_key": stripe_publishable_key}
     return jsonify(stripe_config)
 
-@app.route("/create-checkout-session")
+@routes_bp.route("/create-checkout-session")
 def create_checkout_session():
     domain_url = "http://127.0.0.1:5000/"
-    stripe.api_key = stripe_keys["secret_key"]
+    stripe_secret_key = current_app.config['STRIPE_SECRET_KEY']
+    stripe.api_key = stripe_secret_key
     try:
         checkout_session = stripe.checkout.Session.create(
             success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
@@ -38,35 +34,34 @@ def create_checkout_session():
             payment_method_types=["card"],
             mode="payment",
             line_items=[
-                {
-                    
+                {                    
                     "price": "price_1PEzaMRwa8DwDjSVhzZ0LMZS",
                     "quantity": 1
-                }                      
-                    
-                
+                }
             ]
         )
         return jsonify({"sessionId": checkout_session["id"]})
     except Exception as e:
         return jsonify(error=str(e)), 403
 
-@app.route("/success")
+@routes_bp.route("/success")
 def success():
     return render_template("success.html")
 
-@app.route("/cancelled")
+@routes_bp.route("/cancelled")
 def cancelled():
     return render_template("cancelled.html")
 
-@app.route("/payment-webhook", methods=["POST"])
+@routes_bp.route("/payment-webhook", methods=["POST"])
 def payment_webhook():
     payload = request.get_data(as_text=True)
     signature_header = request.headers.get("Stripe-Signature")
+    stripe_secret_key = current_app.config['STRIPE_SECRET_KEY']
+    webhook_secret = current_app.config['STRIPE_WEBHOOK_SECRET']
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, signature_header, stripe_keys["secret_key"]
+            payload, signature_header, stripe_secret_key
         )
     except ValueError as e:
         # Invalid payload
@@ -85,5 +80,5 @@ def payment_webhook():
     return "Success", 200
 
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
