@@ -39,4 +39,4 @@ COPY . .
 EXPOSE 5000
 
 # Run the application.
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["python", "run.py"]
