@@ -6,3 +6,4 @@ dist/
 *.pyc
 .env
 .flaskenv
+docker.env
