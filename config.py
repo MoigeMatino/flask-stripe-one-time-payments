@@ -1,4 +1,4 @@
-from os import environ, getenv
+from os import environ
 
 class Config:
     STRIPE_PUBLISHABLE_KEY=environ.get("STRIPE_PUBLISHABLE_KEY")

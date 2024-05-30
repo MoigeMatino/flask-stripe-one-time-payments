@@ -2,10 +2,9 @@ import os
 
 import stripe
 from flask import current_app, jsonify, render_template, request, Blueprint
-# from . import create_app
+
 
 routes_bp = Blueprint("routes_bp", __name__)
-
 
 
 @routes_bp.route("/")
@@ -78,7 +77,3 @@ def payment_webhook():
         print("Uh-oh, checkout canceled")
         # TODO: add code to update order status and send emails
     return "Success", 200
-
-
-# if __name__ == "__main__":
-#     app.run()
