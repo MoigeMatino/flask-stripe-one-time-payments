@@ -22,7 +22,7 @@ def create_app(config_name='default'):
     from .routes import routes_bp
     app.register_blueprint(routes_bp)
 
-    
+    from .models import Product
     
 
 
