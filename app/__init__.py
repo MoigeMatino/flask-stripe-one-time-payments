@@ -1,4 +1,3 @@
-import os
 from flask import Flask
 from config import config
 from flask_sqlalchemy import SQLAlchemy
@@ -23,8 +22,6 @@ def create_app(config_name='default'):
     register_blueprints(app)
 
     from .models import Product
-    
-
 
     return app
 
