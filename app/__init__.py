@@ -19,8 +19,8 @@ def create_app(config_name='default'):
     migrate.init_app(app, db)
 
     # register blueprints
-    from .routes import routes_bp
-    app.register_blueprint(routes_bp)
+    from .routes import register_blueprints
+    register_blueprints(app)
 
     from .models import Product
     
