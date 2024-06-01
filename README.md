@@ -10,9 +10,10 @@ This repository contains a Flask application that seamlessly integrates Stripe t
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
 4. [Usage](#usage)
-5. [Extending the Project](#extending-the-project)
-6. [Contributing](#contributing)
-7. [License](#license)
+5. [Database Migrations](#database-migrations)
+6. [Extending the Project](#extending-the-project)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 ## Project Description
 
@@ -25,15 +26,16 @@ This project demonstrates how to integrate Stripe into a Flask application for h
 - **Extensible Codebase**: Designed to be easily extended for additional payment-related features.
 - **Configuration Management**: Handle configuration through a dedicated endpoint.
 - **Webhooks**: Receive and handle real-time notifications from Stripe for various events (e.g., payment success).
+- **Dockerized Setup**: Run the application and database using Docker containers.
+- **Database Migrations**: Use Flask-Migrate to handle database migrations.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.10+
-- Flask
-- Stripe account (with API keys)
-- [Poetry](https://python-poetry.org/)
+- Docker and Docker Compose
+- Stripe account (with API keys) - [Create Stripe Account](https://dashboard.stripe.com/register)
+
 
 ### Installation
 
@@ -51,46 +53,48 @@ This project demonstrates how to integrate Stripe into a Flask application for h
     cd flask-stripe-payments
     ```
 
-2. **Create and activate a virtual environment**:
+2. **Set up your Stripe API keys and other environment variables**:
 
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
-    ```
-
-3. **Install the dependencies**:
-    
-    If you haven't installed Poetry yet, you can install it using the following command:
-    ```bash
-    curl -sSL https://install.python-poetry.org | python3 -
-    ```
-    Now to install the dependencies run:
-
-    ```bash
-    poetry install
-    ```    
-
-4. **Set up your Stripe API keys**:
-
-    Create a `.env` file in the root directory and add your Stripe keys:
+    Create a `docker.env` file in the root directory and add your Stripe keys and other environment variables as specified in the `env.example` file:
 
     ```env
     STRIPE_PUBLISHABLE_KEY=your_publishable_key
     STRIPE_SECRET_KEY=your_secret_key
     STRIPE_ENDPOINT_SECRET=your_webhook_endpoint_secret
+    POSTGRES_DB=your_postgres_database
     ```
 
-5. **Run the application**:
+3. **Build and run the Docker containers**:
 
     ```bash
-    FLASK_ENV=development python app.py
+    docker-compose up --build
     ```
+
+    This will start the Flask application and a PostgreSQL database in Docker containers.
 
 ## Usage
 
 1. **Access the application**: Open your browser and go to `http://127.0.0.1:5000/`.
 
 2. **Make a payment**: Click the "Purchase Supa Tee" button and complete the payment using the Stripe Checkout page.
+
+## Database Migrations
+
+To handle database migrations using Flask-Migrate, follow these steps:
+
+1. **Create a migration script**:
+
+    ```bash
+    docker-compose exec flask_app flask db migrate -m "Initial migration."
+    ```
+
+2. **Apply the migration**:
+
+    ```bash
+    docker-compose exec flask_app flask db upgrade
+    ```
+
+These commands should be run inside the Docker container since the database is hosted there.
 
 ## Extending the Project
 
@@ -106,5 +110,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
