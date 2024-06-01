@@ -1,5 +1,3 @@
-import os
-
 import stripe
 from flask import current_app, jsonify, render_template, request, Blueprint
 
