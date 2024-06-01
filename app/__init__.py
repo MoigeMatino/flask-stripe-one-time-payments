@@ -22,8 +22,6 @@ def create_app(config_name='default'):
     register_blueprints(app)
 
     from .models import Product
-    
-
 
     return app
 
