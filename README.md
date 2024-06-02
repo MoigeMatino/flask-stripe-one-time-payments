@@ -34,7 +34,9 @@ This project demonstrates how to integrate Stripe into a Flask application for h
 ### Prerequisites
 
 - Docker and Docker Compose
-- Stripe account (with API keys) - [Create Stripe Account](https://dashboard.stripe.com/register)
+- Stripe account (with API keys)
+  * [Create Stripe Account](https://dashboard.stripe.com/register) then navigate to the [dashboard](https://dashboard.stripe.com/test/dashboard),
+    then click 'Developers'.
 
 
 ### Installation
