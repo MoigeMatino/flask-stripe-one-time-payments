@@ -1,10 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="{{ url_for('api_bp.add_product') }}" method="POST">
-    <input type="text" name="name" placeholder="Product Name" required>
-    <textarea name="description" placeholder="Product Description" required></textarea>
-    <input type="number" name="price" placeholder="Price in cents" required>
-    <button type="submit">Add Product</button>
-</form>
+<div class="container mt-5 is-light">
+    <h1 class="title has-text-centered">Add Supa Tee</h1>
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <form action="{{ url_for('api_bp.add_product') }}" method="POST">
+                <div class="field">
+                    <label for="productName" class="label">Product Name</label>
+                    <div class="control">
+                        <input type="text" class="input" id="productName" name="name" placeholder="Enter product name" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="productDescription" class="label">Product Description</label>
+                    <div class="control">
+                        <textarea class="textarea" id="productDescription" name="description" placeholder="Enter product description" required></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="productPrice" class="label">Price in cents</label>
+                    <div class="control">
+                        <input type="number" class="input" id="productPrice" name="price" placeholder="Enter price" required>
+                    </div>
+                </div>
+                <button type="submit" class="button is-primary">Add Product</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
