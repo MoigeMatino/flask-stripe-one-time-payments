@@ -1,25 +1,21 @@
 import stripe
-from flask import current_app, jsonify, render_template, request, Blueprint
+from flask import current_app, jsonify, request, Blueprint
 
 
-routes_bp = Blueprint("routes_bp", __name__)
+stripe_bp = Blueprint("stripe_bp", __name__)
 
 
-@routes_bp.route("/")
-def index():
-    return render_template("index.html")
-
-@routes_bp.route("/hello")
+@stripe_bp.route("/hello")
 def hello_world():
     return jsonify("hello, world!")
 
-@routes_bp.route("/config")
+@stripe_bp.route("/config")
 def get_publishable_key():
     stripe_publishable_key = current_app.config['STRIPE_PUBLISHABLE_KEY']
     stripe_config = {"public_key": stripe_publishable_key}
     return jsonify(stripe_config)
 
-@routes_bp.route("/create-checkout-session")
+@stripe_bp.route("/create-checkout-session")
 def create_checkout_session():
     domain_url = "http://127.0.0.1:5000/"
     stripe_secret_key = current_app.config['STRIPE_SECRET_KEY']
@@ -41,15 +37,7 @@ def create_checkout_session():
     except Exception as e:
         return jsonify(error=str(e)), 403
 
-@routes_bp.route("/success")
-def success():
-    return render_template("success.html")
-
-@routes_bp.route("/cancelled")
-def cancelled():
-    return render_template("cancelled.html")
-
-@routes_bp.route("/payment-webhook", methods=["POST"])
+@stripe_bp.route("/payment-webhook", methods=["POST"])
 def payment_webhook():
     payload = request.get_data(as_text=True)
     signature_header = request.headers.get("Stripe-Signature")
