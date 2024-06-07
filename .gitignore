@@ -7,3 +7,5 @@ dist/
 .env
 .flaskenv
 docker.env
+pyproject.toml
+poetry.lock
