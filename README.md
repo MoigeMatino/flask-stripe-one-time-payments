@@ -57,7 +57,7 @@ This project demonstrates how to integrate Stripe into a Flask application for h
 
 2. **Set up your Stripe API keys and other environment variables**:
 
-    Create a `docker.env` file in the root directory and add your Stripe keys and other environment variables as specified in the `env.example` file:
+    Create a `docker.env` file in the root directory and add your Stripe keys and other environment variables e.g:
 
     ```env
     STRIPE_PUBLISHABLE_KEY=your_publishable_key
