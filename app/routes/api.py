@@ -41,4 +41,4 @@ def add_product():
 @api_bp.route('/products', methods=['GET'])
 def get_products():
     products = Product.query.all()
-    return render_template("index.html", products=products)
+    return render_template("list_products.html", products=products)

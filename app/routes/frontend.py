@@ -4,7 +4,7 @@ frontend_bp = Blueprint('frontend_bp', __name__)
 
 @frontend_bp.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("list_products.html")
 
 @frontend_bp.route('/products')
 def add_product_view():
