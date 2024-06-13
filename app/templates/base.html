@@ -6,12 +6,16 @@
         <title>Supa Tees</title>
         <!-- Import Bulma CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
         <!-- Import Stripe -->
         <script src="https://js.stripe.com/v3/"></script>
-        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     </head>
     <body>
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>        
     </body>
 </html>
