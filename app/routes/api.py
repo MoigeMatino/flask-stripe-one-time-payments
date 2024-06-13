@@ -36,8 +36,7 @@ def add_product():
     db.session.add(new_product)
     db.session.commit()
     # TODO: change this redirect route to the listing route of products 
-    # FIXME: change routes_bp.index to frontend_bp.index
-    return redirect(url_for("routes_bp.index"))
+    return redirect(url_for("frontend_bp.index"))
 
 @api_bp.route('/products', methods=['GET'])
 def get_products():
