@@ -1,15 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Products</h1>
-<div class="grid">
+<h1 class="title has-text-centered">Products</h1>
+<div class="columns is-multiline is-centered">
     {% for product in products %}
-    <div class="cell">
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        <p>Price: ${{ product.price / 100 }}</p>
-        <button class="purchase-button" data-id="{{ product.id }}" data-price="{{ product.price }}">Buy Now</button>
+    <div class="column is-one-quarter">
+        <div class="box">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>{{ product.name }}</strong>
+                            <br>
+                            {{ product.description }}
+                            <br>
+                            <strong>Price:</strong> ${{ product.price / 100 }}
+                        </p>
+                    </div>
+                    <div class="has-text-centered">
+                        <button class="button is-primary purchase-button" data-id="{{ product.id }}" data-price="{{ product.price }}">Buy Now</button>
+                    </div>
+                </div>
+            </article>
+        </div>
     </div>
     {% endfor %}
 </div>
 {% endblock %}
+

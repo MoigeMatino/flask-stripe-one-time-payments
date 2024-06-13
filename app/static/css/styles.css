@@ -1,0 +1,19 @@
+.columns {
+    margin: 0;
+}
+.column {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+.box {
+    width: 100%;
+}
+.media-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.has-text-centered {
+    margin-top: 10px;
+}

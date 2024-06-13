@@ -37,8 +37,3 @@ def add_product():
     db.session.commit()
     # TODO: change this redirect route to the listing route of products 
     return redirect(url_for("frontend_bp.index"))
-
-@api_bp.route('/products', methods=['GET'])
-def get_products():
-    products = Product.query.all()
-    return render_template("list_products.html", products=products)
