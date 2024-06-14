@@ -10,13 +10,13 @@
         <!-- Import Stripe -->
         <script src="https://js.stripe.com/v3/"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     </head>
     <body>
         <div class="container">
             {% block content %}
             {% endblock %}
-        </div>        
+        </div>  
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>      
     </body>
 </html>

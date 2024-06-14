@@ -13,6 +13,7 @@ document.querySelectorAll('.purchase-button').forEach(button => {
     const stripePublicKey = await getStripePublicKey()
     const stripe = Stripe(stripePublicKey)
     const stripePriceId = event.target.dataset.stripePriceId
+    console.log('Stripe Price ID:', stripePriceId);
 
     try{
       const response = await axios.post('/stripe/create-checkout-session',{

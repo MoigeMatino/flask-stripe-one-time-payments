@@ -14,12 +14,13 @@ def get_publishable_key():
     stripe_publishable_key = current_app.config['STRIPE_PUBLISHABLE_KEY']
     stripe_config = {"public_key": stripe_publishable_key}
     return jsonify(stripe_config)
-# TODO: make this a POST method
-@stripe_bp.route("/create-checkout-session")
+
+
+@stripe_bp.route("/create-checkout-session", methods=['POST'])
 def create_checkout_session():
-    # TODO: add this to constants file
-    domain_url = "http://127.0.0.1:5000/"
-    # TODO: retrieve data from request, specifically the stripe_price_id
+    data = request.json
+    price_id = data['price_id']
+    domain_url = current_app.config['BASE_URL']
     stripe_secret_key = current_app.config['STRIPE_SECRET_KEY']
     stripe.api_key = stripe_secret_key
     try:
@@ -29,8 +30,8 @@ def create_checkout_session():
             payment_method_types=["card"],
             mode="payment",
             line_items=[
-                {    # TODO: pass the stripe_price_id from request here instead                
-                    "price": "price_1PEzaMRwa8DwDjSVhzZ0LMZS",
+                {                   
+                    "price": price_id,
                     "quantity": 1
                 }
             ]

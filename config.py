@@ -1,6 +1,7 @@
 from os import environ
 
 class Config:
+    BASE_URL = environ.get('BASE_URL', 'http://127.0.0.1:5000/')
     STRIPE_PUBLISHABLE_KEY=environ.get("STRIPE_PUBLISHABLE_KEY")
     STRIPE_SECRET_KEY=environ.get("STRIPE_SECRET_KEY")
     STRIPE_ENDPOINT_SECRET=environ.get("STRIPE_ENDPOINT_SECRET") 
