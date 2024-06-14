@@ -35,5 +35,4 @@ def add_product():
 
     db.session.add(new_product)
     db.session.commit()
-    # TODO: change this redirect route to the listing route of products 
     return redirect(url_for("frontend_bp.index"))
