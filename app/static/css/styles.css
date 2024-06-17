@@ -1,19 +1,19 @@
-.columns {
+.product-list .columns {
     margin: 0;
 }
-.column {
+.product-list .column {
     display: flex;
     justify-content: center;
     margin-bottom: 20px; 
 }
-.box {
+.product-list .box {
     width: 100%;
 }
-.media-content {
+.product-list .media-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.has-text-centered {
+.product-list .has-text-centered {
     margin-top: 10px;
 }

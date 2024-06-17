@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title has-text-centered">Products</h1>
+<h1 class="title has-text-centered">Supa Tees</h1>
 <div class="has-text-centered">
-    <a href="{{ url_for('frontend_bp.add_product_view') }}" class="button is-primary">Create New Product</a>
+    <a href="{{ url_for('frontend_bp.add_product_view') }}" class="button is-primary mb-4">Create New Product</a>
 </div>
-<div class="columns is-multiline is-centered">
+<div class="columns is-multiline is-centered product-list">
     {% for product in products %}
     <div class="column is-one-quarter">
         <div class="box">
