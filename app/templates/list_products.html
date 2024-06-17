@@ -2,6 +2,9 @@
 
 {% block content %}
 <h1 class="title has-text-centered">Products</h1>
+<div class="has-text-centered">
+    <a href="{{ url_for('frontend_bp.add_product_view') }}" class="button is-primary">Create New Product</a>
+</div>
 <div class="columns is-multiline is-centered">
     {% for product in products %}
     <div class="column is-one-quarter">
