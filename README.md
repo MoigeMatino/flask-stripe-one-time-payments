@@ -99,11 +99,12 @@ To handle database migrations using Flask-Migrate, follow these steps:
 These commands should be run inside the Docker container since the database is hosted there.
 
 ## Testing
-To run tests:
- ```bash
-    docker-compose exec flask_app pytest
- ```
 
+To run tests, execute the following command in your terminal:
+
+```bash
+docker-compose exec flask_app pytest
+```
 
 ## Extending the Project
 
