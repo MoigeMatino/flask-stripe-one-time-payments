@@ -11,9 +11,10 @@ This repository contains a Flask application that seamlessly integrates Stripe t
     - [Installation](#installation)
 4. [Usage](#usage)
 5. [Database Migrations](#database-migrations)
-6. [Extending the Project](#extending-the-project)
-7. [Contributing](#contributing)
-8. [License](#license)
+6. [Testing](#testing)
+7. [Extending the Project](#extending-the-project)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ## Project Description
 
