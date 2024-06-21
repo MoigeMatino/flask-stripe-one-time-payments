@@ -14,7 +14,6 @@ def test_create_checkout(client, mock_create_checkout_session):
         '/stripe/create-checkout-session',
         json=payload
     )
-    import pdb; pdb.set_trace()
     assert response.status_code == 200
     response_data = response.get_json()
     assert response_data == {'sessionId' : 'test_session_id'}
