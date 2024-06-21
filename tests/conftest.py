@@ -7,6 +7,8 @@ from unittest.mock import patch, MagicMock
 def app():
     app = create_app('testing') 
     app.config['STRIPE_PUBLISHABLE_KEY'] = 'test_public_key'   
+    app.config['BASE_URL'] = 'http://localhost/'
+    app.config['STRIPE_SECRET_KEY'] = 'test_secret_key'
     with app.app_context():
         db.create_all()
         yield app
@@ -48,3 +50,20 @@ def mock_create_product():
     with patch("stripe.Product.create", return_value=mock_product):
         yield mock_product
 
+@pytest.fixture
+def mock_create_checkout_session():
+    mock_response = {
+        'id': 'test_session_id',
+        'line_items': [
+            {
+                'price': 'price_test_id',
+                'quantity': 1
+            }
+        ],
+        'success_url': 'http://localhost/success?session_id=test_session_id',
+        'cancel_url': 'http://localhost/cancelled',
+        'payment_method_types': ['card'],
+        'mode': 'payment'
+    }
+    with patch('stripe.checkout.Session.create', return_value=mock_response):
+        yield mock_response
