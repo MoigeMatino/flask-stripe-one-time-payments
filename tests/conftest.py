@@ -5,7 +5,8 @@ from unittest.mock import patch, MagicMock
 
 @pytest.fixture(scope='module')
 def app():
-    app = create_app('testing')    
+    app = create_app('testing') 
+    app.config['STRIPE_PUBLISHABLE_KEY'] = 'test_public_key'   
     with app.app_context():
         db.create_all()
         yield app
