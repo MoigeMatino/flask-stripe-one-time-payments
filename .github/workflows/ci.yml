@@ -29,6 +29,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.10"
+      
+      - name: Create docker.env file
+        run: |
+          echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> docker.env
+          echo "STRIPE_PUBLISHABLE_KEY : ${{ secrets.STRIPE_PUBLISHABLE_KEY }}" >> docker.env
+          echo "BASE_URL: ${{ secrets.BASE_URL }}" >> docker.env
 
       - name: Install Docker Compose
         run: |
@@ -44,11 +50,6 @@ jobs:
           docker-compose exec -T flask_app sh -c 'while ! nc -z localhost 5432; do sleep 1; done'
 
       - name: Run tests
-        env:
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_PUBLISHABLE_KEY : ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-          BASE_URL: ${{ secrets.BASE_URL }}
-                    
         run: |
           docker-compose exec -T flask_app pytest
 
