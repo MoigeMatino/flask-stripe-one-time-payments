@@ -36,7 +36,10 @@ jobs:
           echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> docker.env
           echo "STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }}" >> docker.env
           echo "BASE_URL=${{ secrets.BASE_URL }}" >> docker.env
-
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> docker.env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> docker.env
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> docker.env
+          
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
