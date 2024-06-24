@@ -9,8 +9,6 @@ def test_create_product(client):
         'name' : 'supatee_test',
         'description' : 'supatee_test_description',
         'price' : 399,
-        'stripe_product_id' : 'prod_test_id',
-        'stripe_price_id' : 'price_test_id'
     }
 
     response = client.post(
