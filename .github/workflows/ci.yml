@@ -34,10 +34,9 @@ jobs:
           . venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Install pytest
+      - name: Set PYTHONPATH
         run: |
-          . venv/bin/activate
-          pip install pytest
+          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
 
       - name: Run tests
         env:
