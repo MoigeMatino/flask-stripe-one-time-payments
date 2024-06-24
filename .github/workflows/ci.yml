@@ -26,19 +26,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
           python -m venv venv
           . venv/bin/activate
           pip install -r requirements.txt
-          pip install pytest
-
-      - name: Set PYTHONPATH
-        run: |
-          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
-
+          
       - name: Run tests
         env:
           DATABASE_URL: postgres://postgres:password@localhost:5432/test_db
