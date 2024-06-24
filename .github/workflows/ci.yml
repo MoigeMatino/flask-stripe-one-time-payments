@@ -38,5 +38,4 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:password@localhost:5432/test_db
         run: |
-          . venv/bin/activate
           docker-compose exec flask_app pytest
