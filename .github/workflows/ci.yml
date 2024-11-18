@@ -36,16 +36,16 @@ jobs:
 
       - name: Build and run Docker Compose
         run: |
-          docker-compose --env-file docker.env up -d --build
+          docker compose --env-file docker.env up -d --build
 
       - name: Wait for services to start
         run: sleep 30
 
       - name: Run tests
         run: |
-          docker-compose exec -T flask_app pytest -v
+          docker compose exec -T flask_app pytest -v
 
       - name: Shut down Docker Compose
         if: always()
         run: |
-          docker-compose down
+          docker compose down
