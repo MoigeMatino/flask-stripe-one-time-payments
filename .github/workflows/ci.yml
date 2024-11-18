@@ -61,7 +61,11 @@ jobs:
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-
+      
+      - name: Build Docker image
+        run: |
+          docker build -t my-fastapi-app .
+    
       - name: Tag and push Docker image
         run: |
           docker tag my-fastapi-app ${{ secrets.DOCKER_HUB_USERNAME }}/my-fastapi-app:latest
