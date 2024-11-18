@@ -55,15 +55,15 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-
+    
     steps:
-      - name: Checkout code
+      - name: Checkout code      
         uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Tag and push Docker image
-      run: |
-        docker tag my-fastapi-app ${{ secrets.DOCKER_HUB_USERNAME }}/my-fastapi-app:latest
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-fastapi-app:latest
+        run: |
+          docker tag my-fastapi-app ${{ secrets.DOCKER_HUB_USERNAME }}/my-fastapi-app:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-fastapi-app:latest
