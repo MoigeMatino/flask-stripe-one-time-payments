@@ -33,6 +33,7 @@ jobs:
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> docker.env
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> docker.env
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> docker.env
+          echo "POSTGRES_TEST_DB=${{ secrets.POSTGRES_TEST_DB }}" >> docker.env
 
       - name: Build and run Docker Compose
         run: |
